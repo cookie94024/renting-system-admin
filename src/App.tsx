@@ -27,6 +27,7 @@ import MemberEdit from "./resources/member/MemberEdit";
 import OrderEdit from "./resources/Order/OrderEdit";
 import ProductTypeShow from "./resources/productType/ProductTypeShow";
 import ReturnRecordList from "./resources/returnRecord/ReturnRecord";
+import ReturnRecordShow from "./resources/returnRecord/ReturnRecordShow";
 
 const dataProvider = drfProvider(API_BASE + "/api", fetchJsonWithAuthToken);
 const authProvider = tokenAuthProvider();
@@ -84,6 +85,7 @@ function App() {
         options={{ label: "歸還紀錄" }}
         name="returnRecord"
         list={ReturnRecordList}
+        show={ReturnRecordShow}
       />
     </Admin>
   );

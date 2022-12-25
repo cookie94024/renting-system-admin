@@ -9,16 +9,51 @@ import {
   Show,
   SimpleShowLayout,
   TextField,
+  useGetList,
+  useNotify,
+  useShowContext,
 } from "react-admin";
 import { API_BASE } from "../../constants";
+import { useState } from "react";
 
-export default function OrderShow() {
+function ReturnButton() {
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  const notify = useNotify();
+
   const handleReturn = (orderId: string) => {
     axios.post(API_BASE + "/api/returnRecord/", {
       order: orderId,
       Authorization: "Token " + localStorage.getItem("token"),
     });
+    notify("歸還訂單成功，請至歸還紀錄查看", { type: "success" });
+    setIsDisabled(true);
   };
+
+  const { record } = useShowContext();
+  const { data: returnRecords } = useGetList("returnRecord");
+
+  const isAnyReturnRecordsMatch = Boolean(
+    returnRecords?.find((returnRecord) => returnRecord.order === record.id)
+  );
+
+  return (
+    <FunctionField
+      label="歸還訂單"
+      render={(record: any) => {
+        return (
+          <Button
+            disabled={isAnyReturnRecordsMatch || isDisabled}
+            label="點此歸還此訂單"
+            onClick={(e) => handleReturn(record.id)}
+          />
+        );
+      }}
+    />
+  );
+}
+
+export default function OrderShow() {
   return (
     <Show>
       <SimpleShowLayout spacing={3}>
@@ -54,17 +89,7 @@ export default function OrderShow() {
           reference="member"
         />
         <ReferenceArrayField label="下單商品" source="item" reference="item" />
-        <FunctionField
-          label="歸還訂單"
-          render={(record: any) => {
-            return (
-              <Button
-                label="點此歸還此訂單"
-                onClick={(e) => handleReturn(record.id)}
-              />
-            );
-          }}
-        />
+        <ReturnButton />
       </SimpleShowLayout>
     </Show>
   );

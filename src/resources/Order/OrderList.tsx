@@ -1,20 +1,22 @@
 import axios from "axios";
 import {
-  Button,
   Datagrid,
   DateField,
   List,
-  NumberField,
   ReferenceArrayField,
   ReferenceField,
+  SearchInput,
   SelectField,
   TextField,
 } from "react-admin";
-import { API_BASE } from "../../constants";
+
+const orderFilter = [
+  <SearchInput source="q" placeholder="搜尋訂單 ID" alwaysOn />,
+];
 
 export const OrderList = () => {
   return (
-    <List>
+    <List filters={orderFilter}>
       <Datagrid rowClick="show">
         <TextField source="id" label="訂單編號" />
         <DateField source="order_datetime" label="下訂時間" />

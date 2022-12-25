@@ -42,7 +42,6 @@ const ItemList = () => {
           reference="product"
         />
         <EditButton />
-        <DeleteButton />
       </Datagrid>
     </List>
   );

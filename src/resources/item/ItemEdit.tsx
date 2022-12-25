@@ -1,15 +1,23 @@
 import {
   Edit,
   ReferenceInput,
+  SaveButton,
   SelectInput,
   SimpleForm,
-  TextInput,
+  ToolbarProps,
+  Toolbar,
 } from "react-admin";
+
+const CustomToolbar = (props: ToolbarProps) => (
+  <Toolbar {...props}>
+    <SaveButton />
+  </Toolbar>
+);
 
 const ItemEdit = () => {
   return (
     <Edit>
-      <SimpleForm>
+      <SimpleForm toolbar={<CustomToolbar />}>
         <SelectInput
           label="庫存狀態"
           source="item_status"

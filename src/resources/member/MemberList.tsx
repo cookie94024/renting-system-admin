@@ -3,12 +3,17 @@ import {
   DateField,
   DeleteButton,
   List,
-  NumberField,
+  ListProps,
+  SearchInput,
   TextField,
 } from "react-admin";
 
-const MemberList = () => (
-  <List>
+const memberFilters = [
+  <SearchInput source="q" placeholder="搜尋會員名稱" alwaysOn />,
+];
+
+const MemberList = (props: ListProps) => (
+  <List {...props} filters={memberFilters}>
     <Datagrid rowClick="show">
       <TextField source="id" />
       <TextField source="member_name" label="會員名稱" />
