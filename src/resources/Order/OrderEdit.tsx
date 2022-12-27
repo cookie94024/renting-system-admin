@@ -13,7 +13,7 @@ export const OrderEdit = () => (
     <SimpleForm>
       <TextInput source="id" label="訂單編號" />
       <DateInput source="order_datetime" label="下訂時間" />
-      <DateInput source="rent_datetime" label="歸還時間" />
+      <DateInput source="rent_datetime" label="租借時間" />
       <SelectInput
         source="order_status"
         label="訂單狀態"

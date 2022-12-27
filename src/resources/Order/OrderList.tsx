@@ -20,7 +20,7 @@ export const OrderList = () => {
       <Datagrid rowClick="show">
         <TextField source="id" label="訂單編號" />
         <DateField source="order_datetime" label="下訂時間" />
-        <DateField source="rent_datetime" label="歸還時間" />
+        <DateField source="rent_datetime" label="租借時間" />
         <SelectField
           source="order_status"
           label="訂單狀態"

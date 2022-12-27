@@ -51,8 +51,6 @@ const ReturnRecordList = () => {
 
   const listContent = useList({ data: filteredList, isLoading });
 
-  console.log(filteredList, Boolean(userId));
-
   return (
     <>
       <div style={{ width: "100%", marginBottom: 20, marginTop: 20 }}>
